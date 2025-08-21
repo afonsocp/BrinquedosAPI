@@ -23,7 +23,14 @@ namespace BrinquedosAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Brinquedo>>> GetBrinquedos()
         {
-            return await _context.TDS_TB_Brinquedos.ToListAsync();
+            var brinquedos = await _context.TDS_TB_Brinquedos.ToListAsync();
+            
+            foreach (var brinquedo in brinquedos)
+            {
+                AddLinksToResource(brinquedo);
+            }
+            
+            return brinquedos;
         }
 
         // GET: api/Brinquedos/5
@@ -37,6 +44,7 @@ namespace BrinquedosAPI.Controllers
                 return NotFound();
             }
 
+            AddLinksToResource(brinquedo);
             return brinquedo;
         }
 
@@ -47,6 +55,7 @@ namespace BrinquedosAPI.Controllers
             _context.TDS_TB_Brinquedos.Add(brinquedo);
             await _context.SaveChangesAsync();
 
+            AddLinksToResource(brinquedo);
             return CreatedAtAction("GetBrinquedo", new { id = brinquedo.Id_brinquedo }, brinquedo);
         }
 
@@ -94,6 +103,26 @@ namespace BrinquedosAPI.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        private void AddLinksToResource(Brinquedo brinquedo)
+        {
+            var baseUrl = $"{Request.Scheme}://{Request.Host}/api/brinquedos";
+            
+            // Link para si mesmo (self)
+            brinquedo.AddLink($"{baseUrl}/{brinquedo.Id_brinquedo}", "self", "GET");
+            
+            // Link para atualizar
+            brinquedo.AddLink($"{baseUrl}/{brinquedo.Id_brinquedo}", "update", "PUT");
+            
+            // Link para deletar
+            brinquedo.AddLink($"{baseUrl}/{brinquedo.Id_brinquedo}", "delete", "DELETE");
+            
+            // Link para listar todos
+            brinquedo.AddLink($"{baseUrl}", "all", "GET");
+            
+            // Link para criar novo
+            brinquedo.AddLink($"{baseUrl}", "create", "POST");
         }
 
         private bool BrinquedoExists(int id)

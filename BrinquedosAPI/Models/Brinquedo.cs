@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BrinquedosAPI.Models
 {
-    public class Brinquedo
+    public class Brinquedo : ResourceBase
     {
         [Key]
         public int Id_brinquedo { get; set; }

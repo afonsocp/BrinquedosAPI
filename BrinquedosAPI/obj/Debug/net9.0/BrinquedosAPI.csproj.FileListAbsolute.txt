@@ -166,3 +166,4 @@ C:\Users\Afonso\Desktop\cp4.net\BrinquedosAPI\obj\Debug\net9.0\refint\Brinquedos
 C:\Users\Afonso\Desktop\cp4.net\BrinquedosAPI\obj\Debug\net9.0\BrinquedosAPI.pdb
 C:\Users\Afonso\Desktop\cp4.net\BrinquedosAPI\obj\Debug\net9.0\BrinquedosAPI.genruntimeconfig.cache
 C:\Users\Afonso\Desktop\cp4.net\BrinquedosAPI\obj\Debug\net9.0\ref\BrinquedosAPI.dll
+C:\Users\Afonso\Desktop\cp4.net\BrinquedosAPI\obj\Debug\net9.0\BrinquedosAPI.sourcelink.json
